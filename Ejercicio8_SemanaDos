@@ -1,0 +1,64 @@
+﻿using System;
+
+namespace ejerciciosSemana2
+{
+    class Program
+    {
+            //Se dice que un numero entero es un numero perfecto si sus factores, incluyendo 1(pero no el numero entero), al sumarse
+            //dan como resulado el numero entero. Por ejemplo 6 es un numero perfecto ya que 6=1+2+3. Escriba una aplicacion que determine
+            //si un numero introducido por el usuario es un numero perfecto. Cree un metodo que muestre ademas todos los numeros perdectos
+            //entre 1 y 1000. Imprima los factores de cada numero perfecto para confirmar que el numero sea realmente perfecto
+
+
+            static bool NumeroPerfecto(int numero)
+            {
+                int sumaFactor = 1;
+                for (int i =2; i<= numero /2; i++)
+                {
+                    if (numero % i == 0)
+                    {
+                        sumaFactor += i;
+                    }
+                }
+                return sumaFactor == numero;
+            }
+           
+
+            static void Main(string[]args)
+            {
+                Console.WriteLine("Ingresa un numero para verificar si es perfecto");
+                int n1 = int.Parse(Console.ReadLine());
+
+                if (NumeroPerfecto(n1))
+                {
+                    Console.WriteLine($"{n1} es un numero perfecto");
+                }
+                else
+                {
+                    Console.WriteLine($"{n1} no es un numero perfecto");
+                }
+            Console.WriteLine("");
+
+                Console.WriteLine("Numero perfectos entre 1 y 1,000: ");
+
+                //probemos con rango de 1 a 10 mil.
+                for (int i = 2; i <= 10000; i++)
+                    if (NumeroPerfecto(i))
+                    {
+                        Console.Write($"{i} (factores :1 ");
+                        for (int l = 2; l <= i / 2; l++)
+                        {
+                            if (i % l == 0)
+                            {
+                                Console.Write($",{l}");
+                            }
+                        }
+                        Console.WriteLine(")");
+                    }
+                //no salir de la consola
+                Console.ReadLine();
+
+            }
+        
+    }
+}
